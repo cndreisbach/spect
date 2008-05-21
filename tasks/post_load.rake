@@ -21,7 +21,7 @@ flatten_arrays.call(flatten_arrays,PROJ)
 
 PROJ.changes ||= paragraphs_of(PROJ.history_file, 0..1).join("\n\n")
 
-PROJ.description ||= paragraphs_of(PROJ.readme_file, 'description').join("\n\n")
+PROJ.description ||= paragraphs_of(PROJ.readme_file, 3).join("\n\n")
 
 PROJ.summary ||= PROJ.description.split('.').first
 
