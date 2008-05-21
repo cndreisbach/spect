@@ -14,6 +14,7 @@ PROJ.authors = 'Clinton R. Nixon of Viget Labs'
 PROJ.email = 'clinton.nixon@viget.com'
 PROJ.url = 'http://github.com/crnixon/spect'
 PROJ.rubyforge.name = 'spect'
+PROJ.version = Spect::VERSION
 
 PROJ.spec.opts << '--color'
 
