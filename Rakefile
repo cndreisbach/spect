@@ -15,7 +15,7 @@ PROJ.email = 'clinton.nixon@viget.com'
 PROJ.url = 'http://github.com/crnixon/spect'
 PROJ.rubyforge.name = 'spect'
 PROJ.version = Spect::VERSION
-PROJ.exclude = ['.git']
+PROJ.exclude = ['.git', 'pkg']
 
 PROJ.spec.opts << '--color'
 
