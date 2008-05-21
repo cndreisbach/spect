@@ -1,49 +1,49 @@
 spect
-    by Clinton R. Nixon of Viget Labs <clinton.nixon@viget.com>
-    http://github.com/crnixon/expect
+=====
 
-== DESCRIPTION:
+Author: Clinton R. Nixon of Viget Labs <clinton.nixon@viget.com>
+
+## Description
 
 Spect is a set of wrappers for Test::Unit assertions so that you can write assertions in a more BDD-like syntax. You can use it with any Test::Unit-derived framework. I intended it to be enjoyable to use with Shoulda (http://thoughtbot.com/projects/shoulda).
 
-== FEATURES/PROBLEMS:
+## Features/problems
 
 * Lets you write tests that read like English.
 * Doesn't prevent you from writing tests that read like moron.
-* Should let you assert like so:
-    expect(true).is.not false
+* Should let you assert like so - `expect(true).is.not false` - but doesn't yet.
 * Does not yet wrap assert_block.
 
-== SYNOPSIS:
+## Synopis
 
-   def test_spect_works
-     expect(current_user.name).equal "Jim Dangly"
-     expect(1 + 1).is.kind_of Fixnum
-     expect(black_sabbath).is.not.nil
-     expect(false).is.not.not.not.equal true
+     def test_spect_works
+       expect(current_user.name).equal "Jim Dangly"
+       expect(1 + 1).is.kind_of Fixnum
+       expect(black_sabbath).is.not.nil
+       expect(false).is.not.not.not.equal true
 
-     expect(ZeroDivisionError).raised_by do
-       1 / 0
+       expect(ZeroDivisionError).raised_by do
+         1 / 0
+       end
      end
-   end
 
-== REQUIREMENTS:
+## Requirements
 
-* Shoulda is required to run the tests, but otherwise, nothing else.
+Shoulda is required to run the tests, but otherwise, nothing else.
 
-== INSTALL:
+## Instal
 
-* sudo gem install spect
+    sudo gem install spect
 
 For right now:
 
-* sudo gem install crnixon-spect --source http://gems.github.com
+    sudo gem install crnixon-spect --source http://gems.github.com
 
 and then
 
-  require 'spect'
+    require 'spect'
 
-== LICENSE:
+## License
 
 (The MIT License)
 

@@ -1,10 +1,11 @@
 History.txt
 Manifest.txt
-README.txt
+README.markdown
 Rakefile
 lib/spect.rb
 lib/spect/expectations.rb
 lib/spect/expecting.rb
+spect.gemspec
 tasks/ann.rake
 tasks/bones.rake
 tasks/gem.rake
