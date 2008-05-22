@@ -1,4 +1,8 @@
-== 1.0.0 / 2008-05-21
+== 0.2.0 / 2008-05-22
+* 1 major enhancement
+  * Implicit equality
+
+== 0.1.0 / 2008-05-21
 
 * 1 major enhancement
-  * Birthday!
+  * First implementation

@@ -65,6 +65,13 @@ namespace :gem do
     puts PROJ.gem._spec.to_ruby
   end
 
+  desc 'Writes out spec'
+  task :spec => 'gem:prereqs' do
+    File.open(PROJ.name + '.gemspec', 'w') do |f|
+      f.write PROJ.gem._spec.to_ruby
+    end
+  end
+
   pkg = Rake::PackageTask.new(PROJ.name, PROJ.version) do |pkg|
     pkg.need_tar = PROJ.gem.need_tar
     pkg.need_zip = PROJ.gem.need_zip

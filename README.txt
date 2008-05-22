@@ -1,20 +1,18 @@
-spect
-=====
+= spect
 
-Author: Clinton R. Nixon of Viget Labs <clinton.nixon@viget.com>
-
-## Description
+by Clinton R. Nixon of Viget Labs <clinton.nixon@viget.com>
+    
+== Description
 
 Spect is a set of wrappers for Test::Unit assertions so that you can write assertions in a more BDD-like syntax. You can use it with any Test::Unit-derived framework. I intended it to be enjoyable to use with Shoulda (http://thoughtbot.com/projects/shoulda).
 
-## Features/problems
+== Features/problems
 
 * Lets you write tests that read like English.
 * Doesn't prevent you from writing tests that read like moron.
-* Should let you assert like so - `expect(true).is.not false` - but doesn't yet.
 * Does not yet wrap assert_block.
 
-## Synopis
+== Synopis
 
      def test_spect_works
        expect(current_user.name).equal "Jim Dangly"
@@ -27,11 +25,11 @@ Spect is a set of wrappers for Test::Unit assertions so that you can write asser
        end
      end
 
-## Requirements
+== Requirements
 
 Shoulda is required to run the tests, but otherwise, nothing else.
 
-## Instal
+== Install
 
     sudo gem install spect
 
@@ -43,7 +41,7 @@ and then
 
     require 'spect'
 
-## License
+== License
 
 (The MIT License)
 

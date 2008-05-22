@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name = %q{spect}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.specification_version = 2 if s.respond_to? :specification_version=
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Clinton R. Nixon of Viget Labs"]
-  s.date = %q{2008-05-21}
+  s.date = %q{2008-05-22}
   s.description = %q{Spect is a set of wrappers for Test::Unit assertions so that you can write assertions in a more BDD-like syntax. You can use it with any Test::Unit-derived framework. I intended it to be enjoyable to use with Shoulda (http://thoughtbot.com/projects/shoulda).}
   s.email = %q{clinton.nixon@viget.com}
   s.extra_rdoc_files = ["History.txt", "README.txt"]

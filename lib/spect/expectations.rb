@@ -16,16 +16,31 @@ module Spect
         @test.send(:add_assertion)
       end
 
-      def is
-        self
+      def opposite
+        NegativeExpectation
+      end
+
+      def is(*args)
+        if args.length > 0
+          equal(args.first)
+        else
+          self
+        end
       end
       alias be is
-      alias to is
-      alias an is
-      alias a is
+
+      def to
+        self
+      end
+      alias an to
+      alias a to
       
-      def not()
-        NegativeExpectation.new(@test, @object, @message)
+      def not(*args)
+        if args.length > 0
+          opposite.new(@test, @object, @message).equal(args.first)
+        else
+          opposite.new(@test, @object, @message)
+        end
       end
 
       def equal(value)
@@ -82,8 +97,8 @@ module Spect
     end
 
     class NegativeExpectation < PositiveExpectation
-      def not()
-        PositiveExpectation.new(@test, @object, @message)
+      def opposite
+        PositiveExpectation
       end
 
       def equal(value)
@@ -92,7 +107,7 @@ module Spect
 
       def close_to(value, delta)
         assert_raises Test::Unit::AssertionFailedError do
-          assert_in_delta value, @object, delta, @message
+          opposite.new(@test, @object, @message).close_to(value, delta)
         end
       end
 
@@ -113,21 +128,14 @@ module Spect
       end
 
       def raised_by(&block)
-        exceptions = @object.respond_to?(:[]) ? @object : [@object]
-        exceptions += [@message]
-
         assert_raises Test::Unit::AssertionFailedError do
-          assert_raise(*exceptions) do
-            yield
-          end
+          opposite.new(@test, @object, @message).raised_by(&block)
         end
       end
 
       def thrown_by(&block)
         assert_raises Test::Unit::AssertionFailedError do
-          assert_throws(@object, @message) do
-            yield
-          end
+          opposite.new(@test, @object, @message).thrown_by(&block)
         end
       end
 
