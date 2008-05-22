@@ -12,8 +12,8 @@ task :default => 'test:run'
 PROJ.name = 'spect'
 PROJ.authors = 'Clinton R. Nixon of Viget Labs'
 PROJ.email = 'clinton.nixon@viget.com'
-PROJ.url = 'http://github.com/crnixon/spect'
-PROJ.rubyforge.name = 'spect'
+PROJ.url = 'http://viget.rubyforge.com/spect'
+PROJ.rubyforge.name = 'viget'
 PROJ.version = Spect::VERSION
 PROJ.exclude = ['.git', 'pkg']
 
