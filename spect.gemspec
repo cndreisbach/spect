@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{spect}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.specification_version = 2 if s.respond_to? :specification_version=
 
@@ -12,10 +12,10 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["History.txt", "README.txt"]
   s.files = ["History.txt", "Manifest.txt", "README.txt", "Rakefile", "lib/spect.rb", "lib/spect/expectations.rb", "lib/spect/expecting.rb", "spect.gemspec", "tasks/ann.rake", "tasks/bones.rake", "tasks/gem.rake", "tasks/manifest.rake", "tasks/notes.rake", "tasks/post_load.rake", "tasks/rdoc.rake", "tasks/rubyforge.rake", "tasks/setup.rb", "tasks/test.rake", "test/test_spect.rb"]
   s.has_rdoc = true
-  s.homepage = %q{http://github.com/crnixon/spect}
+  s.homepage = %q{http://viget.rubyforge.com/spect}
   s.rdoc_options = ["--main", "README.txt"]
   s.require_paths = ["lib"]
-  s.rubyforge_project = %q{spect}
+  s.rubyforge_project = %q{viget}
   s.rubygems_version = %q{1.1.0}
   s.summary = %q{Spect is a set of wrappers for Test::Unit assertions so that you can write assertions in a more BDD-like syntax}
   s.test_files = ["test/test_spect.rb"]

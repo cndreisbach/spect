@@ -8,8 +8,6 @@ module Spect
   end
 end
 
-module Test::Unit
-  class TestCase
-    include Spect::Expecting
-  end
+Test::Unit::TestCase.module_eval do
+  include Spect::Expecting
 end

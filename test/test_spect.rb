@@ -6,8 +6,10 @@ require 'shoulda'
 class SpectTest < Test::Unit::TestCase
   def test_expect_works
     expect(true).equal true
-    expect(true).is.equal true
+    expect(true).is.equal_to true
     expect(3).is.instance_of Fixnum
+    expect("Count").to.match(/unt$/)
+    expect(nil).to.respond_to :nil?
   end
 
   def test_not_expect_works
@@ -45,6 +47,16 @@ class SpectTest < Test::Unit::TestCase
 
     expect(:hello).not.thrown_by do
       throw :world
+    end
+  end
+
+  def test_expect_returned_by
+    expect(2).returned_by do
+      1 + 1
+    end
+
+    expect(3).not.returned_by do
+      1 + 1
     end
   end
 

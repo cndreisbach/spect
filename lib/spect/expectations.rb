@@ -3,7 +3,7 @@ require 'test/unit/assertions'
 module Spect
   module Expectations
 
-    class PositiveExpectation      
+    module ExpectationBehavior
       include Test::Unit::Assertions
 
       def initialize(test_object, object, message)
@@ -14,10 +14,6 @@ module Spect
 
       def add_assertion
         @test.send(:add_assertion)
-      end
-
-      def opposite
-        NegativeExpectation
       end
 
       def is(*args)
@@ -34,7 +30,7 @@ module Spect
       end
       alias an to
       alias a to
-      
+
       def not(*args)
         if args.length > 0
           opposite.new(@test, @object, @message).equal(args.first)
@@ -43,9 +39,25 @@ module Spect
         end
       end
 
+      def contraposed_assert(&block)
+        assert_raises Test::Unit::AssertionFailedError, @message do
+          inverse = opposite.new(@test, @object, @message)
+          yield inverse
+        end
+      end
+    end
+
+    class PositiveExpectation
+      include ExpectationBehavior
+      
+      def opposite
+        NegativeExpectation
+      end
+      
       def equal(value)
         assert_equal value, @object, @message
       end
+      alias equal_to equal
 
       def close_to(value, delta)
         assert_in_delta value, @object, delta, @message
@@ -55,16 +67,8 @@ module Spect
         assert_match value, @object, @message
       end
 
-      def nil
-        assert_nil @object, @message
-      end
-
-      def respond_to(method)
-        assert_respond_to @object, method, @message
-      end
-
       def same(value)
-        assert_same @object, value
+        assert_same @object, value, @message
       end
 
       def raised_by(&block)
@@ -79,6 +83,11 @@ module Spect
         assert_throws(@object, @message) do
           yield
         end
+      end
+
+      def returned_by(&block)
+        value = yield
+        equal value
       end
 
       def method_missing(name, *args, &block)        
@@ -96,7 +105,9 @@ module Spect
       end
     end
 
-    class NegativeExpectation < PositiveExpectation
+    class NegativeExpectation
+      include ExpectationBehavior
+      
       def opposite
         PositiveExpectation
       end
@@ -106,8 +117,8 @@ module Spect
       end
 
       def close_to(value, delta)
-        assert_raises Test::Unit::AssertionFailedError do
-          opposite.new(@test, @object, @message).close_to(value, delta)
+        contraposed_assert do |object|
+          object.close_to(value, delta)
         end
       end
 
@@ -115,30 +126,28 @@ module Spect
         assert_no_match value, @object, @message
       end
 
-      def nil
-        assert_not_nil @object, @message
-      end
-
-      def respond_to(method)
-        assert !@object.respond_to?(method), @message
-      end
-
       def same(value)
         assert_not_same @object, value
       end
 
       def raised_by(&block)
-        assert_raises Test::Unit::AssertionFailedError do
-          opposite.new(@test, @object, @message).raised_by(&block)
+        contraposed_assert do |object|
+          object.raised_by(&block)
         end
       end
 
       def thrown_by(&block)
-        assert_raises Test::Unit::AssertionFailedError do
-          opposite.new(@test, @object, @message).thrown_by(&block)
+        contraposed_assert do |object|
+          object.thrown_by(&block)
         end
       end
 
+      def returned_by(&block)
+        contraposed_assert do |object|
+          object.returned_by(&block)
+        end
+      end
+      
       def method_missing(name, *args, &block)        
         if @object.respond_to?("#{name}?")
           assert !@object.send("#{name}?", *args),
