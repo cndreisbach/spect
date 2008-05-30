@@ -7,8 +7,10 @@ class SpectTest < Test::Unit::TestCase
   def test_expect_works
     expect(true).equal true
     expect(true).is.equal_to true
+    expect(false).equals false
     expect(3).is.instance_of Fixnum
     expect("Count").to.match(/unt$/)
+    expect("Fazam").matches(/^Faz/)
     expect(nil).to.respond_to :nil?
   end
 
@@ -17,6 +19,7 @@ class SpectTest < Test::Unit::TestCase
     expect(nil).to.not.respond_to :empty?
     expect(3).is.not.an.instance_of String
     expect(3).is.not.close_to(7, 1)
+    expect("foo").does.not.match(/bar/)
   end
 
   def test_not_not_expect_works

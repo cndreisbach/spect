@@ -28,8 +28,12 @@ module Spect
       def to
         self
       end
-      alias an to
-      alias a to
+      alias does to
+
+      def a
+        self
+      end
+      alias an a
 
       def not(*args)
         if args.length > 0
@@ -45,6 +49,17 @@ module Spect
           yield inverse
         end
       end
+
+      # aliases for variable methods
+      def equals(value)
+        equal value
+      end
+      alias equal_to equals
+
+      def matches(value)
+        match value
+      end
+      
     end
 
     class PositiveExpectation
@@ -57,7 +72,6 @@ module Spect
       def equal(value)
         assert_equal value, @object, @message
       end
-      alias equal_to equal
 
       def close_to(value, delta)
         assert_in_delta value, @object, delta, @message
@@ -72,8 +86,7 @@ module Spect
       end
 
       def raised_by(&block)
-        exceptions = @object.respond_to?(:[]) ? @object : [@object]
-        exceptions += [@message]
+        exceptions = Array(@object) + [@message]
         assert_raise(*exceptions) do
           yield
         end
