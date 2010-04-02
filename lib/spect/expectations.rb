@@ -44,7 +44,7 @@ module Spect
       end
 
       def contraposed_assert(&block)
-        assert_raises Test::Unit::AssertionFailedError, @message do
+        assert_raises Spect::Assertion, @message do
           inverse = opposite.new(@test, @object, @message)
           yield inverse
         end

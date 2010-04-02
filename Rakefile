@@ -1,22 +1,24 @@
-# Look in the tasks/setup.rb file for the various options that can be
-# configured in this Rakefile. The .rake files in the tasks directory
-# are where the options are used.
+require 'rake/testtask'
 
-load 'tasks/setup.rb'
+task :default => :test
 
-ensure_in_path 'lib'
-require 'spect'
+Rake::TestTask.new do |t|
+  t.libs << "test"
+  t.test_files = FileList['test/test_*.rb']
+  t.verbose = true
+end
 
-task :default => 'test:run'
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |s|
+    s.name = "spect"
+    s.email = "crnixon@gmail.com"
+    s.authors = ["Clinton R. Nixon"]
+    s.summary = "An alternate, BDD-inspired, way to write assertions in Ruby that works with Test::Unit and all its kin."
+    s.description = "An alternate, BDD-inspired, way to write assertions in Ruby that works with Test::Unit and all its kin."
+    s.homepage = "http://github.com/crnixon/spect"
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
+end
 
-PROJ.name = 'spect'
-PROJ.authors = 'Clinton R. Nixon of Viget Labs'
-PROJ.email = 'clinton.nixon@viget.com'
-PROJ.url = 'http://viget.rubyforge.com/spect'
-PROJ.rubyforge.name = 'viget'
-PROJ.version = Spect::VERSION
-PROJ.exclude = ['.git', 'pkg']
-
-PROJ.spec.opts << '--color'
-
-# EOF

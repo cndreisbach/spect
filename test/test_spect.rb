@@ -1,7 +1,6 @@
 require 'test/unit'
-require File.dirname(__FILE__) + '/../lib/spect'
-require 'rubygems'
-require 'shoulda'
+
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'spect'))
 
 class SpectTest < Test::Unit::TestCase
   def test_expect_works
@@ -61,10 +60,5 @@ class SpectTest < Test::Unit::TestCase
     expect(3).not.returned_by do
       1 + 1
     end
-  end
-
-  should "work with shoulda" do
-    expect("hello").not.equal "world"
-    expect(1 + 1).is.kind_of Fixnum
   end
 end

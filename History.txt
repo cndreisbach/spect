@@ -1,3 +1,7 @@
+== 0.3.0 / 2010-04-03
+* 1 major enhancement
+  * works with Ruby 1.9
+
 == 0.2.1 / 2008-05-22
 * 3 minor enhancements
   * Added returned_by
